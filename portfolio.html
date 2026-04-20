@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김지안 | Portfolio</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+
+  /* 상단 네비 */
+  nav.top-nav {
+    padding: 14px 40px;
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #6b6b6b;
+    border-bottom: 1px solid #eae9e4;
+  }
+  nav.top-nav a { text-decoration: none; }
+  nav.top-nav a:hover { color: #1a1a1a; }
+  nav.top-nav a.active { color: #1a1a1a; font-weight: 600; }
+
+  /* 콘텐츠 컨테이너 */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 40px 96px;
+  }
+
+  /* 프로필 블록 */
+  .profile-img {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0e4d4 0%, #c8b896 100%);
+    overflow: hidden;
+    margin-bottom: 24px;
+    object-fit: cover;
+  }
+
+  h1.name {
+    font-size: 38px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+  h1.name .divider { color: #a8a6a0; font-weight: 400; margin: 0 4px; }
+
+  /* 콜아웃 + 연락처 */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 28px;
+    margin-top: 4px;
+  }
+  .callout {
+    background: #f7f6f3;
+    border: 1px solid #eae9e4;
+    border-radius: 4px;
+    padding: 18px 22px;
+  }
+  .callout p {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: #2a2a2a;
+  }
+  .callout p + p { margin-top: 10px; }
+  .contact-list { font-size: 14.5px; line-height: 2.15; }
+  .contact-list a {
+    text-decoration: none;
+    border-bottom: 0.5px solid #a8a6a0;
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+  .contact-list a:hover { border-bottom-color: #1a1a1a; }
+
+  /* 섹션 제목 */
+  h2.section-h {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px;
+    padding-top: 56px;
+  }
+  .divider-line {
+    height: 1px;
+    background: #eae9e4;
+    margin: 0 0 24px;
+  }
+
+  /* 공통 row */
+  .row-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    font-size: 14.5px;
+  }
+  .row-between .muted { color: #6b6b6b; }
+
+  /* 기술 스택 */
+  .skill-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 5px 0;
+    flex-wrap: wrap;
+  }
+  .skill-row .label {
+    color: #6b6b6b;
+    min-width: 110px;
+    font-size: 14.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .skill-row .tags { flex: 1; min-width: 0; }
+  .tag {
+    display: inline-block;
+    padding: 3px 9px;
+    background: #eeede8;
+    color: #37352f;
+    font-size: 12.5px;
+    border-radius: 3px;
+    margin: 2px 4px 2px 0;
+  }
+
+  /* 카드 그리드 (교육, 프로젝트) */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .edu-card {
+    padding: 16px;
+    border: 1px solid #eae9e4;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: #a8a6a0; }
+  .edu-card .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .edu-card .title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .edu-card .date {
+    font-size: 12px;
+    color: #6b6b6b;
+  }
+
+  .project-card {
+    border: 1px solid #eae9e4;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.25s ease;
+  }
+  .project-card:hover {
+    border-color: #a8a6a0;
+    transform: translateY(-2px);
+  }
+  .project-thumb { height: 120px; position: relative; }
+  .project-info { padding: 12px 14px; }
+  .project-info .title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .project-info .date {
+    font-size: 11.5px;
+    color: #6b6b6b;
+    margin-bottom: 8px;
+  }
+
+  /* 트러블슈팅 */
+  .trouble-item { margin-bottom: 24px; }
+  .trouble-item:last-child { margin-bottom: 0; }
+  .trouble-item .title {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+  }
+  .trouble-grid {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 8px 14px;
+    font-size: 13.5px;
+    line-height: 1.75;
+    padding-left: 4px;
+  }
+  .trouble-grid .label { color: #6b6b6b; }
+  .trouble-grid .result { color: #1a1a1a; font-weight: 600; }
+
+  /* 푸터 */
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 40px 56px;
+    text-align: center;
+    font-size: 13px;
+    color: #a8a6a0;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    main { padding: 40px 24px 72px; }
+    nav.top-nav { padding: 12px 24px; gap: 14px; font-size: 12px; overflow-x: auto; }
+    h1.name { font-size: 30px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .skill-row { flex-direction: column; gap: 4px; }
+    .skill-row .label { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="/">Home</a>
+  <a href="/resume">Resume</a>
+  <a href="/portfolio" class="active">Portfolio</a>
+  <a href="https://github.com/jiankim" target="_blank" rel="noopener">Github</a>
+  <a href="https://velog.io/@jian" target="_blank" rel="noopener">Velog</a>
+</nav>
+
+<main>
+
+  <!-- 프로필 이미지 (실제 사진 쓸 때는 아래 div를 <img src="/profile.jpg" class="profile-img"> 로 교체) -->
+  <div class="profile-img">
+    <svg viewBox="0 0 104 104" width="104" height="104">
+      <circle cx="52" cy="42" r="18" fill="#fff" opacity="0.92"/>
+      <ellipse cx="52" cy="86" rx="29" ry="20" fill="#fff" opacity="0.92"/>
+    </svg>
+  </div>
+
+  <h1 class="name">김지안 <span class="divider">|</span> Portfolio</h1>
+
+  <div class="hero-grid">
+    <div class="callout">
+      <p>👋 사용자 경험을 중심에 두고 일하는 개발자, <strong>김지안</strong>입니다.</p>
+      <p>코드 너머의 사람을 상상하며 만드는 것을 좋아합니다.</p>
+    </div>
+    <div class="contact-list">
+      <div>✉️ <a href="mailto:jian.kim@gmail.com">jian.kim@gmail.com</a></div>
+      <div>👤 <a href="https://github.com/jiankim" target="_blank" rel="noopener">GitHub</a></div>
+      <div>📙 <a href="https://velog.io/@jian" target="_blank" rel="noopener">Blog</a></div>
+      <div>📄 <a href="/resume">Resume</a></div>
+    </div>
+  </div>
+
+  <!-- 경력 -->
+  <h2 class="section-h">💼 경력</h2>
+  <div class="divider-line"></div>
+  <div class="row-between">
+    <span>(주)테크플로우</span>
+    <span class="muted">2024.03 ~ 현재</span>
+  </div>
+  <div class="row-between">
+    <span>(주)스타트랩</span>
+    <span class="muted">2022.07 ~ 2024.02</span>
+  </div>
+
+  <!-- 기술 스택 -->
+  <h2 class="section-h">🛠 기술 스택</h2>
+  <div class="divider-line"></div>
+  <div class="skill-row">
+    <span class="label">📘 Language</span>
+    <div class="tags">
+      <span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+    </div>
+  </div>
+  <div class="skill-row">
+    <span class="label">⚙️ Framework</span>
+    <div class="tags">
+      <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">React Query</span><span class="tag">Zustand</span>
+    </div>
+  </div>
+  <div class="skill-row">
+    <span class="label">📝 Markup</span>
+    <div class="tags">
+      <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SCSS</span><span class="tag">Emotion</span><span class="tag">Tailwind</span>
+    </div>
+  </div>
+  <div class="skill-row">
+    <span class="label">🔧 Tool</span>
+    <div class="tags">
+      <span class="tag">Git</span><span class="tag">Figma</span><span class="tag">Jira</span><span class="tag">Storybook</span>
+    </div>
+  </div>
+
+  <!-- 교육 -->
+  <h2 class="section-h">🎓 교육</h2>
+  <div class="divider-line"></div>
+  <div class="card-grid">
+    <div class="edu-card">
+      <div class="icon" style="background: #d4e3f3;"></div>
+      <div class="title">프로그래머스 데브코스 FE</div>
+      <div class="date">2021.07 → 2021.12</div>
+    </div>
+    <div class="edu-card">
+      <div class="icon" style="background: #f3e0d4;"></div>
+      <div class="title">성균관대 컴퓨터공학과</div>
+      <div class="date">2017.03 → 2022.02</div>
+    </div>
+  </div>
+
+  <!-- 프로젝트 -->
+  <h2 class="section-h">📂 프로젝트</h2>
+  <div class="divider-line"></div>
+  <div class="card-grid">
+
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #e8dfc8 0%, #b5a882 100%);">
+        <svg viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <rect x="40" y="28" width="120" height="68" rx="3" fill="#fff" opacity="0.92"/>
+          <rect x="52" y="40" width="40" height="5" rx="1" fill="#8a7856"/>
+          <rect x="52" y="52" width="96" height="2" rx="1" fill="#d4cdb6"/>
+          <rect x="52" y="58" width="72" height="2" rx="1" fill="#d4cdb6"/>
+          <rect x="52" y="68" width="30" height="18" rx="2" fill="#b5a882"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="title">애널리틱스 대시보드</div>
+        <div class="date">2025.02 → 2025.06</div>
+        <div><span class="tag">Next.js</span><span class="tag">Recharts</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #dfe3cd 0%, #a3af88 100%);">
+        <svg viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <rect x="76" y="18" width="48" height="84" rx="6" fill="#fff" opacity="0.95"/>
+          <rect x="84" y="30" width="32" height="3" rx="1" fill="#6e7a54"/>
+          <rect x="84" y="46" width="32" height="28" rx="3" fill="#b8c0a0"/>
+          <circle cx="100" cy="88" r="3" fill="#6e7a54"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="title">커머스 앱 리뉴얼</div>
+        <div class="date">2024.04 → 2024.09</div>
+        <div><span class="tag">React Native</span><span class="tag">TypeScript</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #e5dacd 0%, #b89a7e 100%);">
+        <svg viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <rect x="24" y="24" width="152" height="72" rx="3" fill="#fff" opacity="0.9"/>
+          <rect x="36" y="36" width="58" height="3" rx="1" fill="#7a5a3e"/>
+          <rect x="36" y="46" width="92" height="2" rx="1" fill="#d4c4b0"/>
+          <rect x="36" y="62" width="40" height="22" rx="2" fill="#d4c4b0"/>
+          <rect x="82" y="62" width="40" height="22" rx="2" fill="#b89a7e"/>
+          <rect x="128" y="62" width="40" height="22" rx="2" fill="#d4c4b0"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="title">결제 모듈 리팩터링</div>
+        <div class="date">2023.10 → 2023.12</div>
+        <div><span class="tag">TypeScript</span><span class="tag">Toss</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #d5d8e0 0%, #8a92a8 100%);">
+        <svg viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <rect x="30" y="26" width="60" height="68" rx="3" fill="#fff" opacity="0.95"/>
+          <rect x="110" y="26" width="60" height="32" rx="3" fill="#fff" opacity="0.95"/>
+          <rect x="110" y="62" width="60" height="32" rx="3" fill="#fff" opacity="0.95"/>
+          <circle cx="60" cy="60" r="11" fill="#8a92a8"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="title">디자인 시스템 v1</div>
+        <div class="date">2023.04 → 2023.08</div>
+        <div><span class="tag">Storybook</span><span class="tag">Emotion</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 실무 트러블슈팅 -->
+  <h2 class="section-h">🔧 실무 트러블슈팅</h2>
+  <div class="divider-line"></div>
+
+  <div class="trouble-item">
+    <div class="title">01. 대시보드 초기 로딩 3초 문제</div>
+    <div class="trouble-grid">
+      <div class="label">문제</div>
+      <div>차트 라이브러리가 초기 번들에 포함되어 FCP 3.2s, 번들 1.2MB</div>
+      <div class="label">시도</div>
+      <div>① React.lazy 코드 스플리팅 ② Intersection Observer 지연 렌더링 ③ 필수 데이터만 먼저 SSR</div>
+      <div class="label">결과</div>
+      <div class="result">번들 720KB, FCP 1.1s, Lighthouse 68 → 94</div>
+      <div class="label">배움</div>
+      <div>"언제 필요한가" 기준으로 코드를 나누는 것이 체감 성능을 결정한다</div>
+    </div>
+  </div>
+
+  <div class="trouble-item">
+    <div class="title">02. 결제 버튼 연타로 인한 중복 결제</div>
+    <div class="trouble-grid">
+      <div class="label">문제</div>
+      <div>결제 버튼 연타 시 webhook 중복 발행으로 이중 결제 발생</div>
+      <div class="label">시도</div>
+      <div>① disabled 처리 (부족) ② debounce (UX 저하) ③ idempotency key 도입</div>
+      <div class="label">결과</div>
+      <div class="result">중복 결제 0건, 월 CS 문의 12건 → 0건</div>
+      <div class="label">배움</div>
+      <div>UI 방어는 보조일 뿐, 멱등성은 서버 계약으로 보장해야 한다</div>
+    </div>
+  </div>
+
+  <!-- 수상 -->
+  <h2 class="section-h">🏆 수상</h2>
+  <div class="divider-line"></div>
+  <div class="row-between">
+    <span>웹 개발 공모전 대상</span>
+    <span class="muted">2021.11</span>
+  </div>
+  <div class="row-between">
+    <span>사내 해커톤 우수상</span>
+    <span class="muted">2024.09</span>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Kim Jian. All rights reserved.
+</footer>
+
+</body>
+</html>
