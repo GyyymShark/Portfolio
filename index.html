@@ -6,241 +6,14 @@
 <title>김지안 | Portfolio</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body {
-    background: #ffffff;
-    color: #1a1a1a;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-    line-height: 1.6;
-  }
-  a { color: inherit; }
-
-  /* 상단 네비 */
-  nav.top-nav {
-    padding: 14px 40px;
-    display: flex;
-    gap: 20px;
-    font-size: 13px;
-    color: #6b6b6b;
-    border-bottom: 1px solid #eae9e4;
-  }
-  nav.top-nav a { text-decoration: none; }
-  nav.top-nav a:hover { color: #1a1a1a; }
-  nav.top-nav a.active { color: #1a1a1a; font-weight: 600; }
-
-  /* 콘텐츠 컨테이너 */
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 56px 40px 96px;
-  }
-
-  /* 프로필 블록 */
-  .profile-img {
-    width: 104px;
-    height: 104px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #f0e4d4 0%, #c8b896 100%);
-    overflow: hidden;
-    margin-bottom: 24px;
-    object-fit: cover;
-  }
-
-  h1.name {
-    font-size: 38px;
-    font-weight: 700;
-    color: #1a1a1a;
-    letter-spacing: -0.015em;
-    margin-bottom: 24px;
-  }
-  h1.name .divider { color: #a8a6a0; font-weight: 400; margin: 0 4px; }
-
-  /* 콜아웃 + 연락처 */
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 28px;
-    margin-top: 4px;
-  }
-  .callout {
-    background: #f7f6f3;
-    border: 1px solid #eae9e4;
-    border-radius: 4px;
-    padding: 18px 22px;
-  }
-  .callout p {
-    font-size: 14.5px;
-    line-height: 1.85;
-    color: #2a2a2a;
-  }
-  .callout p + p { margin-top: 10px; }
-  .contact-list { font-size: 14.5px; line-height: 2.15; }
-  .contact-list a {
-    text-decoration: none;
-    border-bottom: 0.5px solid #a8a6a0;
-    padding-bottom: 1px;
-    transition: border-color 0.15s;
-  }
-  .contact-list a:hover { border-bottom-color: #1a1a1a; }
-
-  /* 섹션 제목 */
-  h2.section-h {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin: 0 0 8px;
-    padding-top: 56px;
-  }
-  .divider-line {
-    height: 1px;
-    background: #eae9e4;
-    margin: 0 0 24px;
-  }
-
-  /* 공통 row */
-  .row-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 8px 0;
-    font-size: 14.5px;
-  }
-  .row-between .muted { color: #6b6b6b; }
-
-  /* 기술 스택 */
-  .skill-row {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    padding: 5px 0;
-    flex-wrap: wrap;
-  }
-  .skill-row .label {
-    color: #6b6b6b;
-    min-width: 110px;
-    font-size: 14.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .skill-row .tags { flex: 1; min-width: 0; }
-  .tag {
-    display: inline-block;
-    padding: 3px 9px;
-    background: #eeede8;
-    color: #37352f;
-    font-size: 12.5px;
-    border-radius: 3px;
-    margin: 2px 4px 2px 0;
-  }
-
-  /* 카드 그리드 (교육, 프로젝트) */
-  .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .edu-card {
-    padding: 16px;
-    border: 1px solid #eae9e4;
-    border-radius: 4px;
-    transition: border-color 0.2s;
-  }
-  .edu-card:hover { border-color: #a8a6a0; }
-  .edu-card .icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    margin-bottom: 12px;
-  }
-  .edu-card .title {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 4px;
-  }
-  .edu-card .date {
-    font-size: 12px;
-    color: #6b6b6b;
-  }
-
-  .project-card {
-    border: 1px solid #eae9e4;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.25s ease;
-  }
-  .project-card:hover {
-    border-color: #a8a6a0;
-    transform: translateY(-2px);
-  }
-  .project-thumb { height: 120px; position: relative; }
-  .project-info { padding: 12px 14px; }
-  .project-info .title {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 4px;
-  }
-  .project-info .date {
-    font-size: 11.5px;
-    color: #6b6b6b;
-    margin-bottom: 8px;
-  }
-
-  /* 트러블슈팅 */
-  .trouble-item { margin-bottom: 24px; }
-  .trouble-item:last-child { margin-bottom: 0; }
-  .trouble-item .title {
-    font-size: 15.5px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 12px;
-  }
-  .trouble-grid {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 8px 14px;
-    font-size: 13.5px;
-    line-height: 1.75;
-    padding-left: 4px;
-  }
-  .trouble-grid .label { color: #6b6b6b; }
-  .trouble-grid .result { color: #1a1a1a; font-weight: 600; }
-
-  /* 푸터 */
-  footer {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 32px 40px 56px;
-    text-align: center;
-    font-size: 13px;
-    color: #a8a6a0;
-  }
-
-  /* 반응형 */
-  @media (max-width: 640px) {
-    main { padding: 40px 24px 72px; }
-    nav.top-nav { padding: 12px 24px; gap: 14px; font-size: 12px; overflow-x: auto; }
-    h1.name { font-size: 30px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 20px; }
-    .card-grid { grid-template-columns: 1fr; }
-    .skill-row { flex-direction: column; gap: 4px; }
-    .skill-row .label { min-width: 0; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="top-nav">
-  <a href="/">Home</a>
-  <a href="/resume">Resume</a>
-  <a href="/portfolio" class="active">Portfolio</a>
+  <a href="#experience">경력</a>
+  <a href="#projects">프로젝트</a>
+  <a href="#troubleshooting">트러블슈팅</a>
   <a href="https://github.com/jiankim" target="_blank" rel="noopener">Github</a>
   <a href="https://velog.io/@jian" target="_blank" rel="noopener">Velog</a>
 </nav>
@@ -271,7 +44,7 @@
   </div>
 
   <!-- 경력 -->
-  <h2 class="section-h">💼 경력</h2>
+  <h2 id="experience" class="section-h">💼 경력</h2>
   <div class="divider-line"></div>
   <div class="row-between">
     <span>(주)테크플로우</span>
@@ -327,7 +100,7 @@
   </div>
 
   <!-- 프로젝트 -->
-  <h2 class="section-h">📂 프로젝트</h2>
+  <h2 id="projects" class="section-h">📂 프로젝트</h2>
   <div class="divider-line"></div>
   <div class="card-grid">
 
@@ -401,7 +174,7 @@
   </div>
 
   <!-- 실무 트러블슈팅 -->
-  <h2 class="section-h">🔧 실무 트러블슈팅</h2>
+  <h2 id="troubleshooting" class="section-h">🔧 실무 트러블슈팅</h2>
   <div class="divider-line"></div>
 
   <div class="trouble-item">
