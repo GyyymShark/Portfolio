@@ -130,6 +130,17 @@ h2.section-h {
   margin: 2px 4px 2px 0;
 }
 
+/* 서브 섹션 헤딩 */
+h3.sub-h {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b6b6b;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 24px 0 6px;
+}
+h3.sub-h:first-of-type { margin-top: 0; }
+
 /* 카드 그리드 (교육, 프로젝트) */
 .card-grid {
   display: grid;
