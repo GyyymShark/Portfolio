@@ -261,11 +261,48 @@
     <div class="title">01. 메인페이지 속도 개선</div>
     <div class="trouble-grid">
       <div class="label">문제</div>
-      <div>메인페이지의 FCP · LCP 지표가 사용자 체감 속도를 떨어뜨리는 수준이었음. 무거운 정적 파일(JS / CSS)과 메인 히어로 영역의 CSR 렌더링 방식이 초기 그리기 시점을 지연시키는 주요 원인</div>
+      <div>메인페이지 초기 로딩이 매우 느려 사용자 체감 속도가 크게 저하 (Lighthouse 측정 기준 FCP 27.7s · LCP 66.5s). 무거운 정적 파일(JS 2,379KB · CSS 1,012KB)과 메인 히어로 영역의 CSR 렌더링이 초기 그리기 지연의 주요 원인</div>
       <div class="label">시도</div>
       <div>① main_fcp.js · main_fcp.css 등 정적 파일 용량 압축으로 다운로드 · 파싱 비용 절감 ② 첫 화면을 좌우하는 메인 히어로 영역을 CSR → SSR로 전환해 의미 있는 콘텐츠를 서버에서 선렌더링</div>
       <div class="label">결과</div>
-      <div class="result">FCP · LCP 지표 개선 · 메인 히어로 영역이 첫 페인트 시점에 즉시 노출되어 초기 체감 속도 향상</div>
+      <div>
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>지표</th>
+              <th>AS-IS</th>
+              <th>TO-BE</th>
+              <th>개선율</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JS 파일 크기</td>
+              <td>2,379KB</td>
+              <td>1,056KB</td>
+              <td class="delta">55.6% ↓</td>
+            </tr>
+            <tr>
+              <td>CSS 파일 크기</td>
+              <td>1,012KB</td>
+              <td>497KB</td>
+              <td class="delta">50.9% ↓</td>
+            </tr>
+            <tr>
+              <td>FCP (초기 출력)</td>
+              <td>27.7s</td>
+              <td>18.7s</td>
+              <td class="delta">32.5% ↓ (9s 단축)</td>
+            </tr>
+            <tr>
+              <td>LCP (최대 요소)</td>
+              <td>66.5s</td>
+              <td>57.7s</td>
+              <td class="delta">13.2% ↓ (8.8s 단축)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="label">배움</div>
       <div>"무엇을 줄일까"(정적 자원 용량)와 "언제 그릴까"(렌더링 시점) 두 축을 함께 다룰 때 Core Web Vitals 개선 효과가 가장 크다</div>
     </div>
