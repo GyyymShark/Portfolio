@@ -236,18 +236,23 @@
     </div>
 
     <div class="project-card">
-      <div class="project-thumb" style="background: linear-gradient(135deg, #d5d8e0 0%, #8a92a8 100%);">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #d9e4ef 0%, #7895b2 100%);">
         <svg viewBox="0 0 200 120" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-          <rect x="30" y="26" width="60" height="68" rx="3" fill="#fff" opacity="0.95"/>
-          <rect x="110" y="26" width="60" height="32" rx="3" fill="#fff" opacity="0.95"/>
-          <rect x="110" y="62" width="60" height="32" rx="3" fill="#fff" opacity="0.95"/>
-          <circle cx="60" cy="60" r="11" fill="#8a92a8"/>
+          <rect x="34" y="18" width="82" height="84" rx="4" fill="#fff" opacity="0.96"/>
+          <rect x="48" y="34" width="42" height="4" rx="2" fill="#7895b2"/>
+          <rect x="48" y="46" width="52" height="3" rx="1.5" fill="#c3d2e1"/>
+          <rect x="48" y="56" width="38" height="3" rx="1.5" fill="#c3d2e1"/>
+          <rect x="48" y="70" width="28" height="16" rx="2" fill="#d9e4ef"/>
+          <path d="M129 42h26v36h-26z" fill="#fff" opacity="0.96"/>
+          <path d="M134 49h16M134 56h16M134 63h10" stroke="#7895b2" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="142" cy="87" r="12" fill="none" stroke="#fff" stroke-width="4"/>
+          <path d="m151 96 11 11" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="project-info">
-        <div class="title">디자인 시스템 v1</div>
-        <div class="date">2023.04 → 2023.08</div>
-        <div><span class="tag">Storybook</span><span class="tag">Emotion</span></div>
+        <div class="title">AI OCR 기반 상품정보 정합성 검증을 통한 식품 표시 관련 법적 리스크 감소</div>
+        <div class="date">2026.06 → 2026.08</div>
+        <div><span class="tag">Azure OCR</span><span class="tag">OpenAI API</span><span class="tag">Batch</span><span class="tag">Teams</span></div>
       </div>
     </div>
 
@@ -371,7 +376,52 @@
   </div>
 
   <div class="trouble-item">
-    <div class="title">05. 이미지 리사이징 <span class="muted">(TODO)</span></div>
+    <div class="title">05. AI OCR 기반 상품정보 정합성 검증</div>
+    <div class="trouble-grid">
+      <div class="label">문제</div>
+      <div>
+        상품 등록 담당자가 라벨 이미지를 보고 중량 · 열량 · 보관방법 등을 어드민에 수기로 입력해 오등록 가능성이 있었고, 전체 상품을 지속적으로 검수할 자동화된 수단이 부족
+        <div class="sub-line">월 5건 이상의 불일치가 여러 검수 경로에서 발견되어, 오류 탐지부터 담당자 전달까지의 자동화가 필요</div>
+      </div>
+      <div class="label">시도</div>
+      <div>
+        <div>Azure OCR로 상품 라벨의 텍스트를 추출하고, OpenAI API로 중량 · 총열량 · 보관방법 등 검증값을 구조화</div>
+        <div class="sub-line">정기 배치에서 어드민 등록정보와 비교한 뒤 불일치를 저장하고 Teams 알림을 전송</div>
+        <div class="sub-line">AI의 의미 추출 후 필드별 우선순위 · 예외 규칙 · 응답 형식 검증을 적용해 오탐을 제어</div>
+      </div>
+      <div class="label">결과</div>
+      <div>
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>지표</th>
+              <th>운영 결과</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>모니터링 상품</td>
+              <td>105개</td>
+            </tr>
+            <tr>
+              <td>OCR 분석 요청</td>
+              <td>138건 · 실패 0건</td>
+            </tr>
+            <tr>
+              <td>분석 결과</td>
+              <td>일치 120건 · 불일치 18건</td>
+            </tr>
+            <tr>
+              <td>후속 조치</td>
+              <td class="delta">불일치 18건 모두 Teams 알림 전송</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="sub-line">2026년 8월 4일 기준</div>
+      </div>
+      <div class="label">배움</div>
+      <div>OCR은 텍스트 인식에, AI는 비정형 문맥 해석에 역할을 분리하고 규칙 기반 후처리를 결합해야 자동 검증 결과를 안정적으로 운영할 수 있다</div>
+    </div>
   </div>
 
 
