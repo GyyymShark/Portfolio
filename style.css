@@ -20,6 +20,21 @@ nav.top-nav {
 nav.top-nav a { text-decoration: none; }
 nav.top-nav a:hover { color: #1a1a1a; }
 nav.top-nav a.active { color: #1a1a1a; font-weight: 600; }
+.pdf-save-button {
+  margin-left: auto;
+  padding: 5px 10px;
+  border: 1px solid #d7d5ce;
+  border-radius: 3px;
+  background: #fff;
+  color: #37352f;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.pdf-save-button:hover {
+  border-color: #1a1a1a;
+  background: #f7f6f3;
+}
 
 /* 콘텐츠 컨테이너 */
 main {
@@ -257,4 +272,39 @@ footer {
   .card-grid { grid-template-columns: 1fr; }
   .skill-row { flex-direction: column; gap: 4px; }
   .skill-row .label { min-width: 0; }
+}
+
+/* PDF 출력 */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body { background: #fff; }
+  nav.top-nav,
+  .pdf-save-button { display: none !important; }
+  main {
+    max-width: none;
+    padding: 0;
+  }
+  footer {
+    max-width: none;
+    padding: 24px 0 0;
+  }
+  h2.section-h,
+  h3.sub-h,
+  .divider-line { break-after: avoid; page-break-after: avoid; }
+  .card-grid,
+  .edu-card,
+  .project-card,
+  .trouble-item,
+  .result-table { break-inside: avoid; page-break-inside: avoid; }
+  .project-card:hover,
+  .edu-card:hover { transform: none; }
 }
